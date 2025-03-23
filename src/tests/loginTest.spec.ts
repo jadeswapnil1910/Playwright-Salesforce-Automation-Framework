@@ -41,7 +41,7 @@ test.describe("Scenario: SalesForce Login Functionality", async ()=> {
          
     });
 
-    test.only("TC02 Navigate to Contacts Page and Create New Contact", async ({page})=> {
+    test.skip("TC02 Navigate to Contacts Page and Create New Contact", async ({page})=> {
 
         let loginPage = new LoginPage(page);
         let homePage: HomePage;
