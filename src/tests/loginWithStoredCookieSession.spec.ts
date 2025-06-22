@@ -6,9 +6,11 @@ import ContactsPage from "../pages/ContactsPage";
 
 const authFile = "src/config/auth.json";
 
+test.describe.configure({mode: 'serial'});
+
 test.describe("Scenario: SalesForce Login Functionality", async ()=> {
 
-    test.skip("Generate and Store Login Cookies Session", async ( { page } )=> {
+    test("Generate and Store Login Cookies Session @storageState", async ( { page } )=> {
 
         const loginPage = new LoginPage(page);
 
@@ -35,7 +37,7 @@ test.describe("Scenario: SalesForce Login Functionality", async ()=> {
         logger.info("Cookies Session Stored Successfully!");
     });
 
-    test("Login Using Stored Session Auth File", async ({browser})=> {
+    test("Login Using Stored Session Auth File @useStoredSession", async ({browser})=> {
 
         const sessionContext = await browser.newContext({storageState: authFile});
         const page = await sessionContext.newPage();
@@ -68,4 +70,14 @@ test.describe("Scenario: SalesForce Login Functionality", async ()=> {
         });
 
     });
+
+    // test.afterAll(async ({ page, browser }) => {
+    //     if (page) {
+    //         await page.close();
+    //     }
+    //     if (browser) {
+    //         await browser.close();
+    //     }
+    //     logger.info("Resources closed after test execution.");
+    // });
 });
